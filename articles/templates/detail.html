@@ -2,7 +2,15 @@
 
 {% block body %}
 
-    <h1>{{article.title}}</h1>
-    <p>{{article.content}}</p>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
 
-{% end block %}
+    <hr>
+
+    <form action="{% url 'articles:comment_create' article_id=article.id %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit">
+    </form>
+
+{% endblock %}
